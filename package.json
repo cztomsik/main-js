@@ -1,0 +1,26 @@
+{
+  "name": "main-js",
+  "version": "0.0.0",
+  "description": "Watches current directory and re-generates main.js files\r including all **/*.js files",
+  "main": "index.js",
+  "dependencies": {
+    "glob": "~3.2.6",
+    "watch": "~0.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cztomsik/main-js.git"
+  },
+  "bin": {
+    "main-js": "./bin/main-js"
+  },
+  "author": "cztomsik",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/cztomsik/main-js/issues"
+  }
+}
