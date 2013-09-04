@@ -1,5 +1,5 @@
 (function(){
-  load(__URLS__);
+  load(["one.js","two.js","three/three.js","three/four/four.js"]);
 
   function load(urls){
     urls.map(scriptEl).forEach(appendToHead);

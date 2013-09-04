@@ -18,6 +18,9 @@ module.exports = function(){
       glob('**/*.js', function(err, jsFiles){
         //stop cycling
         jsFiles.splice(jsFiles.indexOf('main.js'), 1);
+        jsFiles.sort(function(a, b){
+          return a.split('/').length - b.split('/').length;
+        });
 
         fs.readFile(__dirname + '/loader.js', 'UTF-8', function(err, loader){
           fs.writeFile('main.js', loader.replace('__URLS__', JSON.stringify(jsFiles)));
