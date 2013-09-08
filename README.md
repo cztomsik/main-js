@@ -1,4 +1,4 @@
-Watches current directory and re-generates main.js files including all **/*.js files
+Watches (current) directory **/*.js files and re-generates main.js, responsible for loading whole client-side application
 
 - it does so by injecting `<script src="">` tags during development
 - files are loaded **synchronously**
