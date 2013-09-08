@@ -9,6 +9,38 @@ Watches (current) directory **/*.js files and re-generates main.js, responsible 
 ###Ignored files
 Directories starting with dot are ignored, this makes it perfect place for your bower dependencies. Use .bowerrc to override bower components directory.
 
+###Order of loading
+Files as loaded alphabetically, with each directory treated as module, dependent on its children. This can be better understood with following example:
+
+    /test-app/
+      /!deps/
+        jquery.js
+        jquery.plugin.js
+      /common/
+        ActiveRecord.js
+      /eshop/
+        /products/
+          Product.js
+        Cart.js
+      /users/
+        User.js
+      app.js
+
+
+Where app.js will be loaded last, Product will be loaded before Cart but after ActiveRecord, because it is in folder above. Jquery will be loaded first in this example.
+
+**Resulting order**:
+
+1. !deps/jquery.js
+2. !deps/jquery.plugin.js
+3. common/BaseModel.js
+4. eshop/products/Product.js
+5. eshop/Cart.js
+6. users/User.js
+7. app.js'
+
+
+
 ###Options
 It is possible to override both filename, directory and/or glob-pattern, however it is discouraged to do so except for timestamped dist files.
 

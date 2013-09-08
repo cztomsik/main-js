@@ -1,6 +1,6 @@
 {
   "name": "main-js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Watches (current) directory **/*.js files and re-generates main.js",
   "main": "index.js",
   "dependencies": {
@@ -11,9 +11,12 @@
     "q": "~0.9.7",
     "uglify-js": "~2.4.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "~1.12.1",
+    "chai": "~1.7.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
