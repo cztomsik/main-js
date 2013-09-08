@@ -1,10 +1,1 @@
-function one(){}
-function two(){}
-one();
-one();
-two();
-
-function three(){}
-one();
-two();
-three();
+function one(){}function two(){}function three(){}one(),one(),two(),one(),two(),three();

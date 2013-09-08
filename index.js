@@ -1,6 +1,7 @@
 'use strict';
 
 var
+  UglifyJS = require('uglify-js'),
   Q = require('Q'),
   _ = require('lodash'),
   watch = require('watch'),
@@ -23,7 +24,9 @@ Generator.prototype = {
 
   //safe to override
   loaderTpl: loaderTpl,
-  minifyResult: function(res){ return res; },
+  minifyResult: function(res){
+    return UglifyJS.minify(res, {fromString: true}).code;
+  },
   joinSources: function(sources){
     return sources.join(String.fromCharCode(10));
   },
@@ -71,7 +74,10 @@ Generator.prototype = {
 
   processFiles: function(files){
     if (this.minify){
-      return Q.all(files.map(this.readFile)).then(this.joinSources);
+      return Q.all(files.map(this.readFile))
+        .then(this.joinSources)
+        .then(this.minifyResult)
+      ;
     }
 
     return this.loaderTpl.replace('__URLS__', JSON.stringify(files));
