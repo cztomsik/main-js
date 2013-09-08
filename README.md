@@ -5,12 +5,18 @@ including all **/*.js files
 - files are loaded **synchronously**
 - debugging is still possible, original files are left untouched
 
-USAGE:
+##DEVELOPMENT usage:
+
     cd my_web_app
     ./main-js
 
-TODO:
-  generate minified main.min.js (special command-line option)
+##BUILD usage:
+
+    cd my_web_app
+    ./main-js --build
+
+##TODO
+- generate minified main.min.js (special command-line option)
 
 NOTE: directories starting with dot are ignored,
   this is where your bower-components should be

@@ -1,3 +1,54 @@
 #!/usr/bin/env node
 
-require('..')();
+'use strict';
+
+var
+  Generator = require('..'),
+  _ = require('lodash'),
+  program = require('commander'),
+
+  pkg = require(__dirname + '/../package.json')
+;
+
+program
+  .usage('[options]\n \t ' + pkg.description)
+  .version(pkg.version)
+
+  .option('--target [file]', t('target file name (<%= target %>)'))
+  .option('--directory [dir]', t('dir to scan for js files (<%= directory %>)'))
+  .option('--pattern [glob-pattern]', t('custom js-file pattern (<%= pattern %>)'))
+  .option('--build', 'minify sources to target file, do not watch')
+
+  .on('--help', function(){
+    console.log('  Development - watch for file changes:');
+    console.log('    cd my-web-app');
+    console.log('    main-js');
+    console.log('');
+    console.log('  Build - generate "big" dist file:');
+    console.log('    cd my-web-app');
+    console.log('    main-js --build');
+    console.log('');
+    console.log('  NOTE: Do not commit generated files to SCM, use --build flag during build instead');
+  })
+
+  .parse(process.argv)
+;
+
+return run(new Generator(program));
+
+
+function t(tpl, data){
+  return _.template(tpl, data || Generator.prototype);
+}
+
+function run(generator){
+  if (program.build){
+    console.log(t('Building <%= target %>', generator));
+    generator.minify = true;
+    generator.generate();
+    return;
+  }
+
+  console.log(t('Watching <%= directory %>', generator));
+  generator.watch();
+}
