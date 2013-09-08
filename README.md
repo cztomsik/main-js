@@ -12,6 +12,9 @@ Directories starting with dot are ignored, this makes it perfect place for your 
 ###Options
 It is possible to override both filename, directory and/or glob-pattern, however it is discouraged to do so except for timestamped dist files.
 
+###Install
+`npm install -g main-js`
+
 ###Usage
 
     Usage: main-js [options]
