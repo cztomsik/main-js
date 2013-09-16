@@ -56,10 +56,17 @@ Generator.prototype = {
       target = this.directory + '/' + this.target
     ;
 
-    return Q.nfcall(glob, this.directory + '/' + this.pattern)
+    return Q.nfcall(glob, this.directory + '/' + this.pattern, {mark: true})
+      .then(filesOnly)
       .then(preventCycling)
       .then(this.sortFiles)
     ;
+
+    function filesOnly(matches){
+      return matches.filter(function(f){
+        return f[f.length - 1] !== '/';
+      });
+    }
 
     function preventCycling(fls){
       return _.without(fls, target);
