@@ -25,7 +25,7 @@ Generator.prototype = {
   //safe to override
   loaderTpl: loaderTpl,
   minifyResult: function(res){
-    return UglifyJS.minify(res, {fromString: true}).code;
+    return UglifyJS.minify(res, {fromString: true, mangle: false}).code;
   },
   joinSources: function(sources){
     return sources.join(String.fromCharCode(10));

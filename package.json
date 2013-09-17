@@ -1,6 +1,6 @@
 {
   "name": "main-js",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Watches (current) directory **/*.js files and re-generates main.js",
   "main": "index.js",
   "dependencies": {
