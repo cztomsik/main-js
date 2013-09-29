@@ -1,21 +1,22 @@
 'use strict';
 
 var
+  minimal = require('minimal-js'),
+  defClass = minimal.defClass,
+  dot = minimal.dot,
   UglifyJS = require('uglify-js'),
   Q = require('Q'),
   _ = require('lodash'),
   watch = require('watch'),
   glob = require('glob'),
   fs = require('fs'),
-  loaderTpl = fs.readFileSync(__dirname + '/loader.js', 'UTF-8')
+
+  loaderTpl = fs.readFileSync(__dirname + '/loader.js', 'UTF-8'),
+
+  Generator
 ;
 
-
-function Generator(opts){
-  _.extend(this, opts);
-}
-
-Generator.prototype = {
+Generator = defClass('Generator', {
   //default options
   target: 'main.js',
   directory: '.',
@@ -93,18 +94,11 @@ Generator.prototype = {
   },
 
   sortFiles: function(files){
-    var paths = files.map(function(f){
-      return f.split('/');
-    });
+    var paths = files.map(dot('split', '/'));
 
-    paths.sort(function(a, b){
-      var res = comparePath(a, b);
-      return res;
-    });
+    paths.sort(comparePath);
 
-    return paths.map(function(parts){
-      return parts.join('/');
-    });
+    return paths.map(dot('join', '/'));
 
     //TODO: (perf) inplace
     function comparePath(a, b){
@@ -123,6 +117,6 @@ Generator.prototype = {
       return a[0] > b[0] ?1 :-1;
     }
   },
-};
+});
 
 module.exports = Generator;

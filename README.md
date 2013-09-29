@@ -17,7 +17,7 @@ Files as loaded alphabetically, with each directory treated as module, dependent
         jquery.js
         jquery.plugin.js
       /common/
-        ActiveRecord.js
+        BaseModel.js
       /eshop/
         /products/
           Product.js
