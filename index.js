@@ -5,7 +5,7 @@ var
   defClass = minimal.defClass,
   dot = minimal.dot,
   UglifyJS = require('uglify-js'),
-  Q = require('Q'),
+  Q = require('q'),
   _ = require('lodash'),
   watch = require('watch'),
   glob = require('glob'),
