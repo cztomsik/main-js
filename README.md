@@ -1,3 +1,8 @@
+**Beware**:
+This project is currently discontinued (use browserify for your logic and HTML imports for UI stuff instead)
+
+-----
+
 Watches (current) directory **/*.js files and re-generates main.js, responsible for loading whole client-side application
 
 - it does so by injecting `<script src="">` tags during development
