@@ -1,5 +1,4 @@
-**Beware**:
-This project is currently discontinued (use browserify for your logic and HTML imports for UI stuff instead)
+**DEPRECATED**: Use browserify/webpack
 
 -----
 
